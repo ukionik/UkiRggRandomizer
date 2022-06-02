@@ -7,4 +7,16 @@
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="GenHTTP.Core" Version="6.3.4" />
+      <PackageReference Include="GenHTTP.Modules.StaticWebsites" Version="6.3.4" />
+      <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1210.39" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="www\**">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
