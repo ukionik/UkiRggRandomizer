@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using GenHTTP.Engine;
+﻿using GenHTTP.Engine;
 using GenHTTP.Modules.IO;
+using GenHTTP.Modules.Layouting;
 using GenHTTP.Modules.Practices;
+using GenHTTP.Modules.Security;
 using GenHTTP.Modules.StaticWebsites;
+using GenHTTP.Modules.Webservices;
+using UkiRggRandomizer.Controller;
 
-namespace UkiRggRandomizer
+namespace UkiRggRandomizer;
+
+public partial class App
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    public App()
     {
-        public App()
-        {
-            var tree = ResourceTree.FromDirectory("www/");
-            var app = StaticWebsite.From(tree);
-            
-            var host = Host.Create()
-                .Handler(app)
-                .Defaults()
-                .Port(18234)
-                .Start();
-            
-            
-        }
+        var tree = ResourceTree.FromDirectory("www/");
+
+        var app = Layout.Create()
+            .AddService<TestResource>("test")
+            .Add(CorsPolicy.Permissive())
+            .Fallback(StaticWebsite.From(tree));
+
+        var host = Host.Create()
+            .Handler(app)
+            .Defaults()
+            .Port(18234)
+            .Start();
     }
 }
