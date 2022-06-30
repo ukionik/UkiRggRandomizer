@@ -1,26 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <RggWheel />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import RggWheel from "@/components/RggWheel";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    RggWheel
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+#app{
+  font-family: Arial;
+  display: flex;
+  height: 100vh;
 }
 </style>
