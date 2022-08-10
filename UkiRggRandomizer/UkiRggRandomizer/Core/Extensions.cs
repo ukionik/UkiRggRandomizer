@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using GenHTTP.Modules.Layouting.Provider;
@@ -35,5 +36,16 @@ public static class Extensions
                 RegexOptions.Compiled)
             .Trim()
             .ToLower();
+    }
+    
+    public static void Shuffle<T>(this IList<T> list, Random r)
+    {
+        var n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            var k = r.Next(n + 1);
+            (list[k], list[n]) = (list[n], list[k]);
+        }
     }
 }
