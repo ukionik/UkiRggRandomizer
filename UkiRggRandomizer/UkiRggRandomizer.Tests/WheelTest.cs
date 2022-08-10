@@ -50,7 +50,7 @@ public class WheelTest
     public void ScheduleTest()
     {
         var wheelEngine = new WheelEngine(_items);
-        var schedule = wheelEngine.GenerateWheelSchedule(new WheelEngineParams(30));
+        var schedule = wheelEngine.GenerateWheelSchedule(new WheelEngineParams(30, false));
         schedule.ForEach(Console.WriteLine);
     }
 }
