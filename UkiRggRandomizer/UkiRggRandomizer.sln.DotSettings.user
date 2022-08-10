@@ -1,14 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2197966f_002D6ae5_002D4e58_002Da9cf_002De732aac4fcd3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Kekw #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2197966f_002D6ae5_002D4e58_002Da9cf_002De732aac4fcd3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Kekw #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::E91C7455-C712-4151-B8A5-4AEF4313715C::net6.0-windows7.0::UkiRggRandomizer.Tests.WheelTest.ShuffleTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::E91C7455-C712-4151-B8A5-4AEF4313715C::net6.0-windows7.0::UkiRggRandomizer.Tests.WheelTest.ScheduleTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5b532655_002D3e93_002D49f6_002D8852_002D19a62a0dba05/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Kekw" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::E91C7455-C712-4151-B8A5-4AEF4313715C::net6.0-windows7.0::UkiRggRandomizer.Tests.WheelTest.ShuffleTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::E91C7455-C712-4151-B8A5-4AEF4313715C::net6.0-windows7.0::UkiRggRandomizer.Tests.WheelTest.ScheduleTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::E91C7455-C712-4151-B8A5-4AEF4313715C::net6.0-windows7.0::UkiRggRandomizer.Tests.UnitTest1.RoundTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::E91C7455-C712-4151-B8A5-4AEF4313715C::net6.0-windows7.0::UkiRggRandomizer.Tests.OtherTest.RoundTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	</wpf:ResourceDictionary>

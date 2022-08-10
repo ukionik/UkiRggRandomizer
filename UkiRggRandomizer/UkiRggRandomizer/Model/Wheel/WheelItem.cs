@@ -2,15 +2,17 @@
 
 public class WheelItem
 {
+    public int Index { get; }
     public string Name { get; }
 
-    public WheelItem(string name)
+    public WheelItem(int index, string name)
     {
+        Index = index;
         Name = name;
     }
 
     public override string ToString()
     {
-        return Name;
+        return $"{Index}. {Name}";
     }
 }

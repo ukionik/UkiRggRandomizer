@@ -15,6 +15,12 @@ public class WheelResource : IResource
         _wheelService = wheelService;
     }
     
+    [ResourceMethod(RequestMethod.GET, "items")]
+    public List<WheelItem> Items()
+    {
+        return _wheelService.GetItems();
+    }
+
     [ResourceMethod(RequestMethod.GET, "generate-schedule")]
     public List<WheelItemSchedule> GenerateSchedule()
     {

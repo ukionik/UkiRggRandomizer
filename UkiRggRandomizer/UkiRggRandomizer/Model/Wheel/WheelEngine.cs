@@ -47,7 +47,7 @@ public class WheelEngine
                     continue;
             
                 range.Max = time;
-                scheduleList.Add(new WheelItemSchedule(range, WheelItems[prevPosition]));
+                scheduleList.Add(new WheelItemSchedule(range, WheelItems[prevPosition].Index));
                 range = new WheelItemTimeRange
                 {
                     Min = time
@@ -58,7 +58,7 @@ public class WheelEngine
             else
             {
                 range.Max = time + _interval;
-                scheduleList.Add(new WheelItemSchedule(range, WheelItems[prevPosition]));
+                scheduleList.Add(new WheelItemSchedule(range, WheelItems[prevPosition].Index));
             }
         }
 
