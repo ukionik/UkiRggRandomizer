@@ -64,7 +64,7 @@ export default {
                 let currentSpeed = this.formula(millis)
                 let newPosition = (currentSpeed * timePassed) / 1000
                 this.position = Math.round(newPosition) % this.items.length
-                console.log(this.position)
+                console.log(`Item: ${this.position} Position: ${newPosition} Speed: ${currentSpeed}`)
             }
         },
         formula(millis){
