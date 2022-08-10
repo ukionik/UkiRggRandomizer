@@ -4,63 +4,75 @@ export default {
     name: "RggWheel",
     data: function(){
         return{
+            startMillis: null,
+            nowMillis: null,
             interval: 5,
             displayCount: 5,
-            items:{}
+            schedule: null,
+            durationSec: 30
         }
     },
     computed:{
-        currentItems: function(){
-            /*let rest = this.items.length - this.position - 1
-
-            if (rest >=  this.displayCount){
-                return this.items.slice(this.position,this.position + this.displayCount)
-            } else{
-                let arr = this.items.slice(this.position, this.items.length)
-                let lastPart = this.items.slice(0, this.displayCount - rest - 1)
-                arr.push(...lastPart)
-                return arr
-            }*/
-
-            if (!this.items){
-                return []
+        rolling: function(){
+            return this.startMillis && this.nowMillis < this.endMillis
+        },
+        endMillis: function(){
+            if (this.startMillis){
+                return this.startMillis + this.durationSec * 1000
             }
 
-            return this.items.slice(0, this.displayCount)
+            return null
+        },
+        currentItems: function(){
+            let arr = []
+            if (!this.schedule){
+                for(let i = 0; i < this.displayCount; i++){
+                    arr.push("---")
+                }
+            } else if (!this.rolling){
+                let schedule = this.schedule[this.schedule.length - 1]
+
+                schedule.previousItems.forEach(item => arr.push(`${item.index}. ${item.name}`))
+                let currentItem = schedule.currentItem
+                arr.push(`${currentItem.index}. ${currentItem.name}`)
+                schedule.nextItems.map(item => arr.push(`${item.index}. ${item.name}`))
+            } else{
+                let millis = this.nowMillis - this.startMillis
+
+                let schedule = this.schedule.find(s => {
+                    return millis >= s.range.min && millis < s.range.max
+                })
+
+                if (!schedule){
+                    schedule = this.schedule[this.schedule.length - 1]
+                }
+
+                schedule.previousItems.forEach(item => arr.push(`${item.index}. ${item.name}`))
+                let currentItem = schedule.currentItem
+                arr.push(`${currentItem.index}. ${currentItem.name}`)
+                schedule.nextItems.map(item => arr.push(`${item.index}. ${item.name}`))
+            }
+
+            return arr
         }
     },
     methods:{
         roll(){
-            this.started = new Date()
+            this.startMillis = Date.now()
             setInterval(this.tick, this.interval)
         },
         tick(){
-            let nowMillis = Date.now()
-            this.calculatePosition(nowMillis)
-        },
-        calculatePosition(millis){
-            if (millis < this.finished.valueOf()){
-                let timePassed = millis - this.started.valueOf()
-                let currentSpeed = this.formula(millis)
-                let newPosition = (currentSpeed * timePassed) / 1000
-                this.position = Math.round(newPosition) % this.items.length
-                console.log(`Item: ${this.position} Position: ${newPosition} Speed: ${currentSpeed}`)
+            if (this.startMillis){
+                this.nowMillis = Date.now()
+            } else{
+                this.nowMillis = null
             }
         }
     },
     mounted(){
-        ApiService.get("/wheel/items").then(response => {
-            this.items = {}
-            response.data.forEach(item => {
-                this.items[item.index] = item
-            })
-
-            console.log(this.items)
+        ApiService.get("/wheel/generate-schedule").then(response => {
+            this.schedule = response.data
+            this.roll()
         })
-
-
-        /*ApiService.get("/wheel/generate-schedule").then(response => {
-            console.log(response.data)
-        })*/
     }
 }

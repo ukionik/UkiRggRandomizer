@@ -7,7 +7,7 @@ namespace UkiRggRandomizer.Model.Wheel;
 public class WheelEngine
 {
     private readonly int _interval = 10;
-    private double _speed = 0.001;
+    private double _speed = 0.002;
 
     public List<WheelItem> WheelItems { get; }
 
