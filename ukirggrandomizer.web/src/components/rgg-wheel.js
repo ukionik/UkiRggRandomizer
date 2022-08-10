@@ -1,3 +1,5 @@
+import ApiService from "@/services/api-service";
+
 export default {
     name: "RggWheel",
     data: function(){
@@ -77,6 +79,9 @@ export default {
         }
     },
     mounted(){
-        this.roll()
+        //this.roll()
+        ApiService.get("/wheel/generate-schedule").then(response => {
+            console.log(response.data)
+        })
     }
 }

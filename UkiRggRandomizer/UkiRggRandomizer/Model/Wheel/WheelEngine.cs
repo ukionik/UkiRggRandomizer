@@ -22,17 +22,13 @@ public class WheelEngine
         WheelItems.Shuffle(r);
     }
 
-    public void Roll(WheelEngineParams parameters)
+    public List<WheelItemSchedule> GenerateWheelSchedule(WheelEngineParams parameters)
     {
         if (parameters.Shuffle)
         {
             Shuffle();            
         }
-        GenerateWheelSchedule(parameters);
-    }
-
-    public List<WheelItemSchedule> GenerateWheelSchedule(WheelEngineParams parameters)
-    {
+        
         var scheduleList = new List<WheelItemSchedule>();
         var range = new WheelItemTimeRange
         {
