@@ -6,9 +6,11 @@ namespace UkiRggRandomizer.Model.Wheel;
 
 public class WheelEngine
 {
-    private readonly int _interval = 10;
-    private readonly double _speed = 0.05;
-    private double _currentDistance;
+    private readonly int _interval = 8;
+    private readonly double _speed = 0.1;
+    private double _distance;
+    private bool _halfTime;
+    private bool _tenTime;
 
     public List<WheelItem> WheelItems { get; }
 
@@ -30,7 +32,7 @@ public class WheelEngine
             Shuffle();
         }
 
-        _currentDistance = 0;
+        _distance = 0;
         var scheduleList = new List<WheelItemSchedule>();
         var range = new WheelItemTimeRange
         {
@@ -55,8 +57,8 @@ public class WheelEngine
 
         for (var time = _interval; time < parameters.Duration; time += _interval)
         {
-            _currentDistance = CalculateDistance(time, parameters.Duration);
-            var position = (int) Math.Round(_currentDistance, MidpointRounding.AwayFromZero) % WheelItems.Count;
+            CalculateDistance(time, parameters.Duration);
+            var position = (int) Math.Round(_distance, MidpointRounding.AwayFromZero) % WheelItems.Count;
 
             //Если цикл не последний
             if (time + _interval < parameters.Duration)
@@ -88,31 +90,27 @@ public class WheelEngine
         return scheduleList;
     }
 
-    private double CalculateDistance(int time, int duration)
+    private void CalculateDistance(int time, int duration)
     {
-        double speed;
-        //Если время меньше половины, начинаем ускорять колесо
-        if (time <= duration / 2)
-        {
-            /*var acceleration = Math.Pow(1 - (time - duration / 2.0) / duration, Math.E);*/
-            var acceleration = Math.Pow(time * 2 / (double)duration, 1/Math.E);
-            Console.WriteLine(acceleration);
-            speed = _speed * acceleration;
-        }
-        //Если время больше половины, то начинаем замедлять колесо
-        else
-        {
-            var slowdown = Math.Pow(1.5 - time / (double)duration, Math.E);
-            speed = _speed * slowdown;
-        }
+        const double halfPi = Math.PI / 2;
+        var k = Math.Pow(1 - time / (double) duration, 4);
 
+        var currentSpeed = _speed * k;
+        var distance = currentSpeed * _interval;
 
-        if (speed < _speed / 2)
+        if (currentSpeed < _speed / 2 && !_halfTime)
         {
-            //Console.WriteLine(time);
+            Console.WriteLine(time);
+            _halfTime = true;
+        }
+        
+        if (currentSpeed < _speed / 10 && !_tenTime)
+        {
+            Console.WriteLine(time);
+            _tenTime = true;
         }
 
-        //Console.WriteLine($"Time: {time}, Speed: {speed}");
-        return _currentDistance + speed * _interval;
+        _distance += distance;
+        //Console.WriteLine($"Time: {time} Speed: {currentSpeed} Distance: {_distance}");
     }
 }
