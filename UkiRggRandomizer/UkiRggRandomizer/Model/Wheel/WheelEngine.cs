@@ -7,7 +7,9 @@ namespace UkiRggRandomizer.Model.Wheel;
 public class WheelEngine
 {
     private readonly int _interval = 8;
-    private readonly double _speed = 0.1;
+    private readonly Random _random;
+    private readonly double _baseSpeed = 0.1;
+    private double _speed;
     private double _distance;
 
     public List<WheelItem> WheelItems { get; }
@@ -15,12 +17,12 @@ public class WheelEngine
     public WheelEngine(List<WheelItem> wheelItems)
     {
         WheelItems = wheelItems;
+        _random = new Random(DateTime.Now.Millisecond);
     }
 
     public void Shuffle()
     {
-        var r = new Random(DateTime.Now.Millisecond);
-        WheelItems.Shuffle(r);
+        WheelItems.Shuffle(_random);
     }
 
     public List<WheelItemSchedule> GenerateWheelSchedule(WheelEngineParams parameters)
@@ -30,7 +32,10 @@ public class WheelEngine
             Shuffle();
         }
 
+        _speed = _baseSpeed + _baseSpeed * (_random.Next(0, 11) / 100.0);
+
         _distance = 0;
+        var duration = (int)(parameters.Duration + parameters.Duration * (_random.Next(0, 6) / 100.0));
         var scheduleList = new List<WheelItemSchedule>();
         var range = new WheelItemTimeRange
         {
@@ -53,13 +58,13 @@ public class WheelEngine
             };
         });
 
-        for (var time = _interval; time < parameters.Duration; time += _interval)
+        for (var time = _interval; time < duration; time += _interval)
         {
-            CalculateDistance(time, parameters.Duration);
+            CalculateDistance(time, duration);
             var position = (int) Math.Round(_distance, MidpointRounding.AwayFromZero) % WheelItems.Count;
 
             //Если цикл не последний
-            if (time + _interval < parameters.Duration)
+            if (time + _interval < duration)
             {
                 if (prevPosition == position)
                     continue;
@@ -108,6 +113,6 @@ public class WheelEngine
         var distance = currentSpeed * _interval;
 
         _distance += distance;
-        Console.WriteLine($"Time: {time} Speed: {currentSpeed} Distance: {_distance}");
+        //Console.WriteLine($"Time: {time} Speed: {currentSpeed} Distance: {_distance}");
     }
 }

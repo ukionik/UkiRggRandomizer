@@ -53,4 +53,32 @@ public class WheelTest
         var schedule = wheelEngine.GenerateWheelSchedule(new WheelEngineParams(30, false));
         schedule.ForEach(Console.WriteLine);
     }
+
+    [Test]
+    public void RandomTest()
+    {
+        var wheelEngine = new WheelEngine(_items);
+        var attempts = 10000;
+
+        var stat = new Dictionary<WheelItem, int>();
+        _items.ForEach(item =>
+        {
+            stat[item] = 0;
+        });
+        
+        for (var i = 0; i < attempts; i++)
+        {
+            var item = wheelEngine.GenerateWheelSchedule(new WheelEngineParams(30))
+                .Last()
+                .CurrentItem;
+
+            var value = stat[item] + 1;
+            stat[item] = value;
+        }
+        
+        foreach (var wheelItem in stat.Keys.OrderBy(x => x.Index))
+        {
+            Console.WriteLine($"{wheelItem.Index}. {wheelItem.Name}: {stat[wheelItem]}");
+        }
+    }
 }
