@@ -5,5 +5,5 @@ namespace UkiRggRandomizer.Service;
 
 public interface IWheelService
 {
-    List<WheelItemSchedule> GenerateWheelSchedule();
+    List<WheelItemSchedule> GenerateWheelSchedule(WheelEngineParams parameters);
 }

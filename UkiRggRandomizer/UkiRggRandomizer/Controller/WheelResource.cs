@@ -15,9 +15,9 @@ public class WheelResource : IResource
         _wheelService = wheelService;
     }
 
-    [ResourceMethod(RequestMethod.GET, "generate-schedule")]
-    public List<WheelItemSchedule> GenerateSchedule()
+    [ResourceMethod(RequestMethod.PUT, "generate-schedule")]
+    public List<WheelItemSchedule> GenerateSchedule(WheelEngineRequest request)
     {
-        return _wheelService.GenerateWheelSchedule();
+        return _wheelService.GenerateWheelSchedule(request.ToWheelEngineParams());
     }
 }

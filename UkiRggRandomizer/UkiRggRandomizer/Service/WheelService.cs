@@ -39,10 +39,10 @@ public class WheelService : IWheelService
         new WheelItem(30, "Rockin' Kats")
     };
 
-    public List<WheelItemSchedule> GenerateWheelSchedule()
+    public List<WheelItemSchedule> GenerateWheelSchedule(WheelEngineParams wheelEngineParams)
     {
         var wheelEngine = new WheelEngine(_items);
-        return wheelEngine.GenerateWheelSchedule(new WheelEngineParams(60, false));
+        return wheelEngine.GenerateWheelSchedule(wheelEngineParams);
     }
 
     public List<WheelItem> GetItems()

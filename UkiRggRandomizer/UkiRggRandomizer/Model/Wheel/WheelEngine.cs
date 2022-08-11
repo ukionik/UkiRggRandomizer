@@ -106,7 +106,7 @@ public class WheelEngine
         }
         else
         {
-            k = Math.Pow(2 - 2 * time / (double) duration, 8);
+            k = Math.Pow(2 - 2 * time / (double) duration, 6);
             currentSpeed = minSpeed + (_speed - minSpeed) * k;
         }
 
