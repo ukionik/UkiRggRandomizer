@@ -9,8 +9,6 @@ public class WheelEngine
     private readonly int _interval = 8;
     private readonly double _speed = 0.1;
     private double _distance;
-    private bool _halfTime;
-    private bool _tenTime;
 
     public List<WheelItem> WheelItems { get; }
 
@@ -92,25 +90,24 @@ public class WheelEngine
 
     private void CalculateDistance(int time, int duration)
     {
-        const double halfPi = Math.PI / 2;
-        var k = Math.Pow(1 - time / (double) duration, 4);
+        var minSpeed = _speed / 100;
 
-        var currentSpeed = _speed * k;
+        double currentSpeed;
+        double k;
+        if (time <= duration / 2)
+        {
+            k = Math.Pow(2 * time / (double) duration, 2);
+            currentSpeed = minSpeed + (_speed - minSpeed) * k;
+        }
+        else
+        {
+            k = Math.Pow(2 - 2 * time / (double) duration, 8);
+            currentSpeed = minSpeed + (_speed - minSpeed) * k;
+        }
+
         var distance = currentSpeed * _interval;
 
-        if (currentSpeed < _speed / 2 && !_halfTime)
-        {
-            Console.WriteLine(time);
-            _halfTime = true;
-        }
-        
-        if (currentSpeed < _speed / 10 && !_tenTime)
-        {
-            Console.WriteLine(time);
-            _tenTime = true;
-        }
-
         _distance += distance;
-        //Console.WriteLine($"Time: {time} Speed: {currentSpeed} Distance: {_distance}");
+        Console.WriteLine($"Time: {time} Speed: {currentSpeed} Distance: {_distance}");
     }
 }

@@ -42,7 +42,7 @@ public class WheelService : IWheelService
     public List<WheelItemSchedule> GenerateWheelSchedule()
     {
         var wheelEngine = new WheelEngine(_items);
-        return wheelEngine.GenerateWheelSchedule(new WheelEngineParams(30, false));
+        return wheelEngine.GenerateWheelSchedule(new WheelEngineParams(60, false));
     }
 
     public List<WheelItem> GetItems()
