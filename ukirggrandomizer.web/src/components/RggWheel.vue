@@ -3,6 +3,8 @@
     <div v-for="item in currentItems" :key="item" class="wheel-item">
       {{ item }}
     </div>
+    <audio id="player" src="http://localhost:18234/resources/sounds/retro/roll/Battletoads NES Music  Rat Race.mp3">
+    </audio>
   </div>
 </template>
 

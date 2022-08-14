@@ -4,12 +4,13 @@ export default {
     name: "RggWheel",
     data: function(){
         return{
+            player: null,
             startMillis: null,
             nowMillis: null,
             interval: 5,
             displayCount: 5,
             schedule: null,
-            durationSec: 30
+            durationSec: 40
         }
     },
     computed:{
@@ -59,6 +60,7 @@ export default {
     methods:{
         roll(){
             this.startMillis = Date.now()
+            this.player.play()
             setInterval(this.tick, this.interval)
         },
         tick(){
@@ -70,9 +72,14 @@ export default {
         }
     },
     mounted(){
-        ApiService.get("/wheel/generate-schedule").then(response => {
+        this.player = document.getElementById("player")
+
+        ApiService.put("/wheel/generate-schedule", {
+            durationSec: this.durationSec
+        }).then(response => {
             this.schedule = response.data
             this.roll()
         })
+
     }
 }

@@ -18,7 +18,10 @@ public partial class App
 
         var tree = ResourceTree.FromDirectory("www/");
 
+        var resourceTree = ResourceTree.FromDirectory("Resources/");
+
         var app = Layout.Create()
+            .Add("resources", GenHTTP.Modules.IO.Resources.From(resourceTree))
             .AddController<TestResource>(diProvider)
             .AddController<WheelResource>(diProvider)
             .Add(CorsPolicy.Permissive())
