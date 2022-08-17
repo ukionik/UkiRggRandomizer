@@ -9,7 +9,9 @@ export default {
             interval: 8,
             displayCount: 5,
             schedule: null,
-            duration: null
+            duration: null,
+            finished: false,
+            fanfarePath: null
         }
     },
     computed:{
@@ -24,13 +26,12 @@ export default {
             return null
         },
         currentItems: function(){
-            console.log((this.startMillis))
             let arr = []
             if (!this.schedule){
                 for(let i = 0; i < this.displayCount; i++){
                     arr.push("---")
                 }
-            } else if (!this.rolling){
+            } else if (this.finished){
                 let schedule = this.schedule[this.schedule.length - 1]
                 schedule.previousItems.forEach(item => arr.push(`${item.index}. ${item.name}`))
                 let currentItem = schedule.currentItem
@@ -58,24 +59,29 @@ export default {
     },
     methods:{
         roll(){
+            this.finished = false
             ApiService.put("/wheel/simulate-wheel", {}).then(response => {
                 let data = response.data
                 this.schedule = data.schedule
                 this.duration = data.realDuration
+                this.fanfarePath = data.fanfarePath
                 this.startMillis = Date.now()
-                this.startRoll(data.songPath)
+                this.play(data.songPath)
             })
         },
-        startRoll(songPath){
-            ApiService.put("/wheel/roll",{
-                songPath: songPath
-            }).then(() => {
-                console.log("Started")
+        play(soundPath){
+            ApiService.put("/player/play",{
+                soundPath: soundPath
             })
         },
         tick(){
             if (this.startMillis){
                 this.nowMillis = Date.now()
+
+                if (this.nowMillis >= this.endMillis && !this.finished){
+                    this.finished = true
+                    this.play(this.fanfarePath)
+                }
             } else{
                 this.nowMillis = null
             }

@@ -1,5 +1,4 @@
-﻿using UkiRggRandomizer.Repositories;
-using UkiRggRandomizer.Service;
+﻿using UkiRggRandomizer.Service;
 using UkiRggRandomizer.Tests.Core;
 
 namespace UkiRggRandomizer.Tests;
@@ -13,7 +12,7 @@ public class SoundServiceTest
     {
         _soundService = new SoundService(new GlobalRepositoryTest());
     }
-    
+
     [Test]
     public void RandomSongTest()
     {

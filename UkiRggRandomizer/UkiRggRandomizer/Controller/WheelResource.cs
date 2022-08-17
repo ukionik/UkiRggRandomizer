@@ -19,10 +19,4 @@ public class WheelResource : IResource
     {
         return _wheelService.SimulateWheel();
     }
-    
-    [ResourceMethod(RequestMethod.PUT, "roll")]
-    public void Roll(WheelRollRequest request)
-    {
-        _wheelService.Roll(request);
-    }
 }

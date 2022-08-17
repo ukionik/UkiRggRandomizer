@@ -23,7 +23,15 @@ public class SoundService : ISoundService
         var randomFilePath = files.RandomItem(random);
         return new WheelRollSong(TotalTime(randomFilePath), randomFilePath);
     }
-    
+
+    public WheelRollSong RandomFanfare()
+    {
+        var random = new Random(DateTime.Now.Millisecond);
+        var files = Directory.GetFiles(Path.Combine(_globalRepository.SoundPath, "Retro", "Fanfare"));
+        var randomFilePath = files.RandomItem(random);
+        return new WheelRollSong(TotalTime(randomFilePath), randomFilePath);
+    }
+
     private TimeSpan TotalTime(string filePath)
     {
         using var fileReader = new Mp3FileReader(filePath);

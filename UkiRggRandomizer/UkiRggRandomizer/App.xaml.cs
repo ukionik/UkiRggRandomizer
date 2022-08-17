@@ -24,6 +24,7 @@ public partial class App
             .Add("resources", GenHTTP.Modules.IO.Resources.From(resourceTree))
             .AddController<TestResource>(diProvider)
             .AddController<WheelResource>(diProvider)
+            .AddController<PlayerResource>(diProvider)
             .Add(CorsPolicy.Permissive())
             .Fallback(StaticWebsite.From(tree));
 

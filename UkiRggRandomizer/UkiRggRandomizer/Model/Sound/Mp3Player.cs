@@ -2,9 +2,9 @@ using System;
 using System.IO;
 using NAudio.Wave;
 
-namespace UkiRggRandomizer.Service;
+namespace UkiRggRandomizer.Model.Sound;
 
-public class Mp3Player : IMp3Player
+public class Mp3Player : IDisposable
 {
     private readonly IWavePlayer _waveOutDevice;
     private WaveStream _mainOutputStream;

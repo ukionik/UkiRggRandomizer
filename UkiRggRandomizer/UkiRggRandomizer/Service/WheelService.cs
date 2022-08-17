@@ -40,34 +40,25 @@ public class WheelService : IWheelService
         new WheelItem(30, "Rockin' Kats")
     };
 
-    private readonly IMp3Player _mp3Player;
     private readonly ISoundService _soundService;
 
-    public WheelService(IMp3Player mp3Player
-        , ISoundService soundService)
+    public WheelService(ISoundService soundService)
     {
-        _mp3Player = mp3Player;
         _soundService = soundService;
     }
 
     public WheelSimulationModel SimulateWheel()
     {
         var wheelRollSong = _soundService.RandomSong();
+        var fanfare = _soundService.RandomFanfare();
         var wheelEngine = new WheelEngine(_items);
         var duration = RandomDuration((int)wheelRollSong.TotalTime.TotalMilliseconds);
         var parameters = new WheelEngineParams(duration);
         var wheelEngineParams = new WheelEngineParams((int)wheelRollSong.TotalTime.TotalMilliseconds);
         var schedule = wheelEngine.GenerateWheelSchedule(wheelEngineParams);
-        return new WheelSimulationModel(wheelRollSong.FullPath, schedule, parameters.DurationMillis);
+        return new WheelSimulationModel(wheelRollSong.FullPath, fanfare.FullPath, schedule, parameters.DurationMillis);
     }
-
-    public void Roll(WheelRollRequest request)
-    {
-        _mp3Player.Stop();
-        _mp3Player.Play(request.SongPath);
-    }
-
-
+    
     public List<WheelItem> GetItems()
     {
         return _items;
