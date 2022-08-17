@@ -8,4 +8,5 @@ public class GlobalRepository : IGlobalRepository
 
     public string ResourcePath => Path.Combine(AppPath, "Resources");
     public string SoundPath => Path.Combine(ResourcePath, "Sounds");
+    public string SheetConfigPath => Path.Combine(AppPath, "sheet.json");
 }

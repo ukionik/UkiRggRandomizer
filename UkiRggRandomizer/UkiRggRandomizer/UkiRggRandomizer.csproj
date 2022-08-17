@@ -11,6 +11,7 @@
       <PackageReference Include="GenHTTP.Core" Version="6.3.4" />
       <PackageReference Include="GenHTTP.Modules.StaticWebsites" Version="6.3.4" />
       <PackageReference Include="GenHTTP.Modules.Webservices" Version="6.3.4" />
+      <PackageReference Include="Google.Apis.Sheets.v4" Version="1.57.0.2727" />
       <PackageReference Include="LiteDB" Version="5.0.11" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
       <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1210.39" />
