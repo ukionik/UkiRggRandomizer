@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using UkiRggRandomizer.Model.Wheel;
+using UkiRggRandomizer.Repositories;
 using UkiRggRandomizer.Service;
 
 namespace UkiRggRandomizer.Configuration;
@@ -17,6 +17,9 @@ public static class DIConfiguration
         var services = new ServiceCollection();
         services.AddSingleton<IHelloService, HelloService>();
         services.AddSingleton<IWheelService, WheelService>();
+        services.AddSingleton<IMp3Player, Mp3Player>();
+        services.AddSingleton<IGlobalRepository, GlobalRepository>();
+        services.AddSingleton<ISoundService, SoundService>();
 
         return services;
     }

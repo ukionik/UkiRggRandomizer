@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using UkiRggRandomizer.Model.Wheel;
+﻿using UkiRggRandomizer.Model.Wheel;
 
 namespace UkiRggRandomizer.Service;
 
 public interface IWheelService
 {
-    List<WheelItemSchedule> GenerateWheelSchedule(WheelEngineParams parameters);
+    WheelSimulationModel SimulateWheel();
+    void Roll(WheelRollRequest request);
 }

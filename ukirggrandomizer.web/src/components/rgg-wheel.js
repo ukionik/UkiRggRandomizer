@@ -4,13 +4,12 @@ export default {
     name: "RggWheel",
     data: function(){
         return{
-            player: null,
             startMillis: null,
             nowMillis: null,
-            interval: 5,
+            interval: 8,
             displayCount: 5,
             schedule: null,
-            durationSec: 40
+            duration: null
         }
     },
     computed:{
@@ -19,12 +18,13 @@ export default {
         },
         endMillis: function(){
             if (this.startMillis){
-                return this.startMillis + this.durationSec * 1000
+                return this.startMillis + this.duration
             }
 
             return null
         },
         currentItems: function(){
+            console.log((this.startMillis))
             let arr = []
             if (!this.schedule){
                 for(let i = 0; i < this.displayCount; i++){
@@ -32,7 +32,6 @@ export default {
                 }
             } else if (!this.rolling){
                 let schedule = this.schedule[this.schedule.length - 1]
-
                 schedule.previousItems.forEach(item => arr.push(`${item.index}. ${item.name}`))
                 let currentItem = schedule.currentItem
                 arr.push(`${currentItem.index}. ${currentItem.name}`)
@@ -59,9 +58,20 @@ export default {
     },
     methods:{
         roll(){
-            this.startMillis = Date.now()
-            this.player.play()
-            setInterval(this.tick, this.interval)
+            ApiService.put("/wheel/simulate-wheel", {}).then(response => {
+                let data = response.data
+                this.schedule = data.schedule
+                this.duration = data.realDuration
+                this.startMillis = Date.now()
+                this.startRoll(data.songPath)
+            })
+        },
+        startRoll(songPath){
+            ApiService.put("/wheel/roll",{
+                songPath: songPath
+            }).then(() => {
+                console.log("Started")
+            })
         },
         tick(){
             if (this.startMillis){
@@ -72,14 +82,6 @@ export default {
         }
     },
     mounted(){
-        this.player = document.getElementById("player")
-
-        ApiService.put("/wheel/generate-schedule", {
-            durationSec: this.durationSec
-        }).then(response => {
-            this.schedule = response.data
-            this.roll()
-        })
-
+        setInterval(this.tick, this.interval)
     }
 }

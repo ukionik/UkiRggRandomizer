@@ -2,15 +2,13 @@
 
 public class WheelEngineParams
 {
-    public int DurationSec { get; }
-    public int Duration => DurationSec * 1000;
-    
+    public int DurationMillis { get; }
     public bool Shuffle { get; }
     public WheelItemDisplayCount WheelItemDisplayCount { get; }
 
-    public WheelEngineParams(int durationSec, bool shuffle = true, WheelItemDisplayCount wheelItemDisplayCount = WheelItemDisplayCount.Five)
+    public WheelEngineParams(int durationMillis, bool shuffle = true, WheelItemDisplayCount wheelItemDisplayCount = WheelItemDisplayCount.Five)
     {
-        DurationSec = durationSec;
+        DurationMillis = durationMillis;
         Shuffle = shuffle;
         WheelItemDisplayCount = wheelItemDisplayCount;
     }

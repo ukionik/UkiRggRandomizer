@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UkiRggRandomizer.Model.Wheel;
 
 namespace UkiRggRandomizer.Service;
@@ -39,14 +40,43 @@ public class WheelService : IWheelService
         new WheelItem(30, "Rockin' Kats")
     };
 
-    public List<WheelItemSchedule> GenerateWheelSchedule(WheelEngineParams wheelEngineParams)
+    private readonly IMp3Player _mp3Player;
+    private readonly ISoundService _soundService;
+
+    public WheelService(IMp3Player mp3Player
+        , ISoundService soundService)
     {
-        var wheelEngine = new WheelEngine(_items);
-        return wheelEngine.GenerateWheelSchedule(wheelEngineParams);
+        _mp3Player = mp3Player;
+        _soundService = soundService;
     }
+
+    public WheelSimulationModel SimulateWheel()
+    {
+        var wheelRollSong = _soundService.RandomSong();
+        var wheelEngine = new WheelEngine(_items);
+        var duration = RandomDuration((int)wheelRollSong.TotalTime.TotalMilliseconds);
+        var parameters = new WheelEngineParams(duration);
+        var wheelEngineParams = new WheelEngineParams((int)wheelRollSong.TotalTime.TotalMilliseconds);
+        var schedule = wheelEngine.GenerateWheelSchedule(wheelEngineParams);
+        return new WheelSimulationModel(wheelRollSong.FullPath, schedule, parameters.DurationMillis);
+    }
+
+    public void Roll(WheelRollRequest request)
+    {
+        _mp3Player.Stop();
+        _mp3Player.Play(request.SongPath);
+    }
+
 
     public List<WheelItem> GetItems()
     {
         return _items;
+    }
+    
+    private int RandomDuration(int durationMillis)
+    {
+        var random = new Random(DateTime.Now.Millisecond);
+        var duration = (int)(durationMillis + durationMillis * (random.Next(0, 6) / 100.0));
+        return duration;
     }
 }

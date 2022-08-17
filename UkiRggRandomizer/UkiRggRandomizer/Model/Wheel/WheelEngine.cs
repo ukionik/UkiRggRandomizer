@@ -35,7 +35,6 @@ public class WheelEngine
         _speed = _baseSpeed + _baseSpeed * (_random.Next(0, 11) / 100.0);
 
         _distance = 0;
-        var duration = (int)(parameters.Duration + parameters.Duration * (_random.Next(0, 6) / 100.0));
         var scheduleList = new List<WheelItemSchedule>();
         var range = new WheelItemTimeRange
         {
@@ -58,13 +57,13 @@ public class WheelEngine
             };
         });
 
-        for (var time = _interval; time < duration; time += _interval)
+        for (var time = _interval; time < parameters.DurationMillis; time += _interval)
         {
-            CalculateDistance(time, duration);
+            CalculateDistance(time, parameters.DurationMillis);
             var position = (int) Math.Round(_distance, MidpointRounding.AwayFromZero) % WheelItems.Count;
 
             //Если цикл не последний
-            if (time + _interval < duration)
+            if (time + _interval < parameters.DurationMillis)
             {
                 if (prevPosition == position)
                     continue;

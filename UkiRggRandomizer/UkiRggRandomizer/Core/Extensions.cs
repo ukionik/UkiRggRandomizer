@@ -65,11 +65,8 @@ public static class Extensions
 
     public static List<T> GetPreviousItems<T>(this IList<T> list, T item, int prevItemCount)
     {
-        if (prevItemCount < 1)
-        {
-            return new List<T>();
-        }
-        
+        if (prevItemCount < 1) return new List<T>();
+
         var index = list.IndexOf(item);
 
         var prevList = new List<T>();
@@ -84,14 +81,11 @@ public static class Extensions
 
         return prevList;
     }
-    
+
     public static List<T> GetNextItems<T>(this IList<T> list, T item, int nextItemCount)
     {
-        if (nextItemCount < 1)
-        {
-            return new List<T>();
-        }
-        
+        if (nextItemCount < 1) return new List<T>();
+
         var index = list.IndexOf(item);
 
         var nextList = new List<T>();
@@ -105,5 +99,11 @@ public static class Extensions
         }
 
         return nextList;
+    }
+
+    public static T RandomItem<T>(this IList<T> list, Random random)
+    {
+        var i = random.Next(list.Count);
+        return list[i];
     }
 }
