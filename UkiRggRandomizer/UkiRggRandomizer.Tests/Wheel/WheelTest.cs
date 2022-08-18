@@ -1,6 +1,6 @@
 ﻿using UkiRggRandomizer.Model.Wheel;
 
-namespace UkiRggRandomizer.Tests;
+namespace UkiRggRandomizer.Tests.Wheel;
 
 public class WheelTest
 {

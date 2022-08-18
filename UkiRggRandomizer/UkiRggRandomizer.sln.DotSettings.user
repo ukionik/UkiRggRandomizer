@@ -33,6 +33,8 @@
     &lt;TestId&gt;NUnit3x::E91C7455-C712-4151-B8A5-4AEF4313715C::net6.0-windows7.0::UkiRggRandomizer.Tests.WheelTest.ScheduleTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::E91C7455-C712-4151-B8A5-4AEF4313715C::net6.0-windows7.0::UkiRggRandomizer.Tests.SoundServiceTest.RandomSongTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::E91C7455-C712-4151-B8A5-4AEF4313715C::net6.0-windows7.0::UkiRggRandomizer.Tests.GoogleApiTest.SpreadSheetTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::E91C7455-C712-4151-B8A5-4AEF4313715C::net6.0-windows7.0::UkiRggRandomizer.Tests.Database.DbServiceTest.DbTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::E91C7455-C712-4151-B8A5-4AEF4313715C::net6.0-windows7.0::UkiRggRandomizer.Tests.Database.DbServiceTest.DbGetTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>

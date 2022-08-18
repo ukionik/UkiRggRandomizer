@@ -6,4 +6,5 @@ public interface IGlobalRepository
     string ResourcePath { get; }
     string SoundPath { get; }
     string SheetConfigPath { get; }
+    string DbPath { get; }
 }

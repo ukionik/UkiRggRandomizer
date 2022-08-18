@@ -1,11 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using UkiRggRandomizer.Model.Sound;
 using UkiRggRandomizer.Repositories;
 using UkiRggRandomizer.Service;
 
 namespace UkiRggRandomizer.Configuration;
 
-public static class DIConfiguration
+public static class DIConfig
 {
     public static ServiceProvider Init()
     {

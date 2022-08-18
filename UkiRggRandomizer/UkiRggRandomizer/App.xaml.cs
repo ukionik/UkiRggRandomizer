@@ -14,7 +14,7 @@ public partial class App
 {
     public App()
     {
-        var diProvider = DIConfiguration.Init();
+        var diProvider = DIConfig.Init();
 
         var tree = ResourceTree.FromDirectory("www/");
 
