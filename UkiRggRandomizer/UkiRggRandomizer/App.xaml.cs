@@ -5,7 +5,6 @@ using GenHTTP.Modules.Practices;
 using GenHTTP.Modules.Security;
 using GenHTTP.Modules.StaticWebsites;
 using UkiRggRandomizer.Configuration;
-using UkiRggRandomizer.Controller;
 using UkiRggRandomizer.Core;
 
 namespace UkiRggRandomizer;
@@ -22,9 +21,7 @@ public partial class App
 
         var app = Layout.Create()
             .Add("resources", GenHTTP.Modules.IO.Resources.From(resourceTree))
-            .AddController<TestResource>(diProvider)
-            .AddController<WheelResource>(diProvider)
-            .AddController<PlayerResource>(diProvider)
+            .AddControllers(diProvider)
             .Add(CorsPolicy.Permissive())
             .Fallback(StaticWebsite.From(tree));
 
@@ -34,5 +31,4 @@ public partial class App
             .Port(18234)
             .Start();
     }
-
 }

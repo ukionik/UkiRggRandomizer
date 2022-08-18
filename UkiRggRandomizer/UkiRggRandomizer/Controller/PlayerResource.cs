@@ -1,11 +1,13 @@
 ﻿using GenHTTP.Api.Protocol;
 using GenHTTP.Modules.Webservices;
+using UkiRggRandomizer.Core;
 using UkiRggRandomizer.Model.Sound;
 using UkiRggRandomizer.Model.Wheel;
 
 namespace UkiRggRandomizer.Controller;
 
-public class PlayerResource : IResource
+[Resource]
+public class PlayerResource
 {
     [ResourceMethod(RequestMethod.PUT, "play")]
     public void Play(PlaySoundRequest request)

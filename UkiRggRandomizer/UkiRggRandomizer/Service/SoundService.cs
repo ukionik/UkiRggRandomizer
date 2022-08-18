@@ -7,6 +7,7 @@ using UkiRggRandomizer.Repositories;
 
 namespace UkiRggRandomizer.Service;
 
+[Service]
 public class SoundService : ISoundService
 {
     private readonly IGlobalRepository _globalRepository;

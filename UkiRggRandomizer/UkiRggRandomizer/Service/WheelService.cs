@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using UkiRggRandomizer.Core;
 using UkiRggRandomizer.Model.Wheel;
 
 namespace UkiRggRandomizer.Service;
 
+[Service]
 public class WheelService : IWheelService
 {
     private readonly List<WheelItem> _items = new()

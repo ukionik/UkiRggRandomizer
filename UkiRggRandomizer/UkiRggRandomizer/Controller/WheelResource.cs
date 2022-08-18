@@ -1,11 +1,13 @@
 ﻿using GenHTTP.Api.Protocol;
 using GenHTTP.Modules.Webservices;
+using UkiRggRandomizer.Core;
 using UkiRggRandomizer.Model.Wheel;
 using UkiRggRandomizer.Service;
 
 namespace UkiRggRandomizer.Controller;
 
-public class WheelResource : IResource
+[Resource]
+public class WheelResource
 {
     private readonly IWheelService _wheelService;
 

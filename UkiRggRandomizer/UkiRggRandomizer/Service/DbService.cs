@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using LiteDB;
+using UkiRggRandomizer.Core;
 using UkiRggRandomizer.Repositories;
 
 namespace UkiRggRandomizer.Service;
 
+[Service]
 public class DbService : IDbService
 {
     private readonly IGlobalRepository _globalRepository;

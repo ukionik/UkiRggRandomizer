@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using UkiRggRandomizer.Repositories;
-using UkiRggRandomizer.Service;
+using UkiRggRandomizer.Core;
 
 namespace UkiRggRandomizer.Configuration;
 
@@ -14,12 +13,8 @@ public static class DIConfig
 
     private static IServiceCollection ConfigureServices()
     {
-        var services = new ServiceCollection();
-        services.AddSingleton<IHelloService, HelloService>();
-        services.AddSingleton<IWheelService, WheelService>();
-        services.AddSingleton<IGlobalRepository, GlobalRepository>();
-        services.AddSingleton<ISoundService, SoundService>();
-
-        return services;
+        return new ServiceCollection()
+            .AddByAttribute<ServiceAttribute>()
+            .AddByAttribute<RepositoryAttribute>();
     }
 }

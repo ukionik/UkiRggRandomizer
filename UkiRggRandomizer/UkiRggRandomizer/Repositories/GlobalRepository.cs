@@ -1,7 +1,9 @@
 ﻿using System.IO;
+using UkiRggRandomizer.Core;
 
 namespace UkiRggRandomizer.Repositories;
 
+[Repository]
 public class GlobalRepository : IGlobalRepository
 {
     public string AppPath { get; set; } = Directory.GetParent(typeof(GlobalRepository).Assembly.Location).FullName;
