@@ -26,7 +26,7 @@ public class SheetService : ISheetService
 
     static SheetService()
     {
-        Config = SheetConfig.Parse();
+        Config = ResourceManager.GetJsonFile<SheetConfigData>("sheet.json");
         SheetId = Config.SheetId;        
     }
 

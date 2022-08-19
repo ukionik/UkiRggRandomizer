@@ -31,5 +31,7 @@
     <ItemGroup>
       <None Remove="sheet.json" />
       <EmbeddedResource Include="sheet.json" />
+      <None Remove="db-config.json" />
+      <EmbeddedResource Include="db-config.json" />
     </ItemGroup>
 </Project>

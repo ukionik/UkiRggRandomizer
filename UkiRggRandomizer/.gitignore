@@ -6,3 +6,4 @@ packages
 config.local
 www/
 sheet.json
+db-config.json

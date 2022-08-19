@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using LiteDB;
 using UkiRggRandomizer.Core;
+using UkiRggRandomizer.Model.Database;
 using UkiRggRandomizer.Repositories;
 
 namespace UkiRggRandomizer.Service;
@@ -18,7 +19,8 @@ public class DbService : IDbService
 
     public List<T> GetList<T>(Func<LiteDatabase, List<T>> dbQuery)
     {
-        using var db = new LiteDatabase(_globalRepository.DbPath);
+        var dbConfigData = ResourceManager.GetJsonFile<DbConfigData>("db-config.json");
+        using var db = new LiteDatabase(dbConfigData.ConnectionString);
         return dbQuery.Invoke(db);
     }
 
