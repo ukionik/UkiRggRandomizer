@@ -3,7 +3,7 @@ using Google.Apis.Sheets.v4;
 using UkiRggRandomizer.Model.Sheet;
 using UkiRggRandomizer.Tests.Core;
 
-namespace UkiRggRandomizer.Tests;
+namespace UkiRggRandomizer.Tests.Sheet;
 
 public class GoogleApiTest
 {
@@ -18,7 +18,7 @@ public class GoogleApiTest
     [Test]
     public void SpreadSheetTest()
     {
-        var config = SheetConfig.Parse(_globalRepository.SheetConfigPath);
+        var config = SheetConfig.Parse();
         
         var service = new SheetsService(new BaseClientService.Initializer
         {

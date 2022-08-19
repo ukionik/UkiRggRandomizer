@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UkiRggRandomizer"
         xmlns:wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="UkiRandomizer 0.1a" Height="450" Width="800">
     <Grid>
         <wpf:WebView2 Source="http://localhost:18234"/>
     </Grid>

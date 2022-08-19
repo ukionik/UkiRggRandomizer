@@ -16,17 +16,18 @@ namespace UkiRggRandomizer.Service;
 [Service]
 public class SheetService : ISheetService
 {
-    private readonly SheetsService _service;
-    private readonly string _sheetId;
+    private static readonly SheetConfigData Config;
+    private static readonly string SheetId;
 
-    public SheetService(IGlobalRepository globalRepository)
+    private readonly Lazy<SheetsService> _service = new(() => new SheetsService(new BaseClientService.Initializer
     {
-        var config = SheetConfig.Parse(globalRepository.SheetConfigPath);
-        _sheetId = config.SheetId;
-        _service = new SheetsService(new BaseClientService.Initializer
-        {
-            ApiKey = config.Key
-        });
+        ApiKey = Config.Key
+    }));
+
+    static SheetService()
+    {
+        Config = SheetConfig.Parse();
+        SheetId = Config.SheetId;        
     }
 
     public async Task<List<Platform>> LoadPlatformsAsync()
@@ -45,7 +46,7 @@ public class SheetService : ISheetService
 
     private async Task<ValueRange> GetRangeAsync(string range)
     {
-        var request = _service.Spreadsheets.Values.Get(_sheetId, range);
+        var request = _service.Value.Spreadsheets.Values.Get(SheetId, range);
         return await request.ExecuteAsync();
     }
 }

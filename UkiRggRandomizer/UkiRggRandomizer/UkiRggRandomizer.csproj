@@ -5,6 +5,7 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <AssemblyName>UkiRandomizer</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
@@ -29,8 +30,6 @@
 
     <ItemGroup>
       <None Remove="sheet.json" />
-      <Content Include="sheet.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
+      <EmbeddedResource Include="sheet.json" />
     </ItemGroup>
 </Project>
