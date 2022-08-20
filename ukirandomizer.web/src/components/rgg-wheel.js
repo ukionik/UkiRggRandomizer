@@ -59,7 +59,7 @@ export default {
     },
     methods:{
         roll(){
-            this.finished = false
+            this.reset()
             ApiService.put("/wheel/simulate-wheel", {}).then(response => {
                 let data = response.data
                 this.schedule = data.schedule
@@ -68,6 +68,14 @@ export default {
                 this.startMillis = Date.now()
                 this.play(data.songPath)
             })
+        },
+        reset(){
+            this.startMillis = null
+            this.nowMillis = null
+            this.schedule = null
+            this.duration = null
+            this.finished = false
+            this.fanfarePath = null
         },
         play(soundPath){
             ApiService.put("/player/play",{
