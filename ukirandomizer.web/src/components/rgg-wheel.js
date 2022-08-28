@@ -54,7 +54,8 @@ export default {
                 schedule.nextItems.map(item => arr.push(`${item.index}. ${item.name}`))
             }
 
-            return arr
+            //Переворачиваем список
+            return arr.reverse()
         }
     },
     methods:{
