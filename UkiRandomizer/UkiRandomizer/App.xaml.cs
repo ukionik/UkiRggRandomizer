@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using GenHTTP.Engine;
@@ -10,7 +11,7 @@ using GenHTTP.Modules.StaticWebsites;
 using Microsoft.Extensions.DependencyInjection;
 using UkiRandomizer.Configuration;
 using UkiRandomizer.Core;
-using UkiRandomizer.Repositories;
+using UkiRandomizer.Repository;
 
 namespace UkiRandomizer;
 
@@ -51,8 +52,14 @@ public partial class App
     }
 
     private async void BwOnDoWork(object? sender, DoWorkEventArgs e)
-    {   
+    {
+        InitDefaultData();
         await LoadRepositoriesAsync();
+    }
+
+    private void InitDefaultData()
+    {
+        _diProvider.GetService<IProfileRepository>().CreateDefaultIfNotExists();
     }
 
     private async Task LoadRepositoriesAsync()

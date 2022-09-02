@@ -4,7 +4,7 @@ using UkiRandomizer.Core;
 using UkiRandomizer.Model.Entity;
 using UkiRandomizer.Service;
 
-namespace UkiRandomizer.Repositories;
+namespace UkiRandomizer.Repository;
 
 [Repository]
 public class PlatformRepository : IPlatformRepository

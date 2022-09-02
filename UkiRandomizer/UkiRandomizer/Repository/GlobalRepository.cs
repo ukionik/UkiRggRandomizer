@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using UkiRandomizer.Core;
 
-namespace UkiRandomizer.Repositories;
+namespace UkiRandomizer.Repository;
 
 [Repository]
 public class GlobalRepository : IGlobalRepository

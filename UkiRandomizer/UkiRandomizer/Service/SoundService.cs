@@ -3,7 +3,7 @@ using System.IO;
 using NAudio.Wave;
 using UkiRandomizer.Core;
 using UkiRandomizer.Model.Wheel;
-using UkiRandomizer.Repositories;
+using UkiRandomizer.Repository;
 
 namespace UkiRandomizer.Service;
 

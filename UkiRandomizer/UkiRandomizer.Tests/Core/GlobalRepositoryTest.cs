@@ -1,4 +1,4 @@
-﻿using UkiRandomizer.Repositories;
+﻿using UkiRandomizer.Repository;
 
 namespace UkiRandomizer.Tests.Core;
 

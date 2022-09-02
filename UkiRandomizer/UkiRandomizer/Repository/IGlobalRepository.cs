@@ -1,4 +1,4 @@
-﻿namespace UkiRandomizer.Repositories;
+﻿namespace UkiRandomizer.Repository;
 
 public interface IGlobalRepository
 {
