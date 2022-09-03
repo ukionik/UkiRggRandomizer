@@ -1,21 +1,15 @@
 <template>
-  <button @click="roll" style="width: 100px">Roll</button>
-  <RggWheel ref="rggWheel" />
+  <div>
+    T1111
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import RggWheel from "@/components/RggWheel";
 
 export default {
   name: 'App',
-  components: {
-    RggWheel
-  },
-  methods:{
-    roll(){
-      this.$refs.rggWheel.roll()
-    }
-  },
+  components: {}
 }
 </script>
 
