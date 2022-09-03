@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using UkiRandomizer.Core;
+﻿using UkiRandomizer.Core;
 using UkiRandomizer.Repository;
 
 namespace UkiRandomizer.Service;
@@ -14,8 +13,8 @@ public class InitService : IInitService
         _profileRepository = profileRepository;
     }
 
-    public Task InitAsync()
+    public void Init()
     {
-        throw new System.NotImplementedException();
+        _profileRepository.CreateDefaultIfNotExists();
     }
 }

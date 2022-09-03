@@ -4,5 +4,5 @@ namespace UkiRandomizer.Service;
 
 public interface IInitService
 {
-    Task InitAsync();
+    void Init();
 }
