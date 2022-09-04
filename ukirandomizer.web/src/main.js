@@ -1,22 +1,22 @@
 import { createApp } from 'vue'
-import { createRouter, createWebHashHistory} from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import 'reset-css/reset.css'
-import App from "./App";
+import App from "./App"
+import RggConsoles from "./components/RggConsoles"
+import RggWheel from "./components/RggWheel"
 
 const routes = [
-    {
-        path: "/",
-        name: "App",
-        component: App
-    },
+    { path: '/', component: RggConsoles },
+    { path: '/wheel', component: RggWheel },
 ]
 
 const router = createRouter({
     // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes, // short for `routes: routes`
 })
 
-const app = createApp({})
+// 5. Create and mount the root instance.
+const app = createApp(App)
 app.use(router)
 app.mount('#app')
