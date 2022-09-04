@@ -1,4 +1,6 @@
-﻿namespace UkiRandomizer.Repository;
+﻿using System;
+
+namespace UkiRandomizer.Repository;
 
 public interface IGlobalRepository
 {
@@ -6,4 +8,5 @@ public interface IGlobalRepository
     string ResourcePath { get; }
     string SoundPath { get; }
     string DbPath { get; }
+    Uri ResourceUrl { get; }
 }

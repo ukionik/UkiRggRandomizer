@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UkiRandomizer.Core;
 using UkiRandomizer.Model.Entity;
@@ -33,6 +34,6 @@ public class PlatformRepository : IPlatformRepository
             });
         }
 
-        Data = platforms;
+        Data = platforms.OrderBy(x => x.ReleaseDate).ToList();
     }
 }
