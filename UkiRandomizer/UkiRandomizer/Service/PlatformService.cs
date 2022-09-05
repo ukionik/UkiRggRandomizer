@@ -22,7 +22,7 @@ public class PlatformService : IPlatformService
     public List<PlatformItemModel> FindPlatforms()
     {
         return _platformRepository.Data
-            .Select(x => new PlatformItemModel(x, _globalRepository.ResourceUrl))
+            .Select(x => new PlatformItemModel(x, _globalRepository.HostUrl))
             .ToList();
     }
 }

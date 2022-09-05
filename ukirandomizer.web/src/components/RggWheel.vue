@@ -15,7 +15,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-color: #161616;
   width: 100vw;
 }
 

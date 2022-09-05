@@ -9,12 +9,12 @@ public class PlatformItemModel
     public string FullName { get; }
     public Uri ImageUrl { get; }
 
-    public PlatformItemModel(Entity.Platform platform, Uri resourceUrl)
+    public PlatformItemModel(Entity.Platform platform, Uri hostUrl)
     {
         Id = platform.Id;
         ShortName = platform.ShortName;
         FullName = platform.FullName;
         var fileName = $"{ShortName.Replace(" ", "").ToLower()}.png";
-        ImageUrl = new Uri(resourceUrl, $"images/consoles/{fileName}");
+        ImageUrl = new Uri(hostUrl, $"resources/images/consoles/{fileName}");
     }
 }
