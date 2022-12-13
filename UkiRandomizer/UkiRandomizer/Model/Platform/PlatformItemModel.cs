@@ -8,6 +8,7 @@ public class PlatformItemModel
     public string ShortName { get; }
     public string FullName { get; }
     public Uri ImageUrl { get; }
+    public int ReleaseYear { get; }
 
     public PlatformItemModel(Entity.Platform platform, Uri hostUrl)
     {
@@ -16,5 +17,6 @@ public class PlatformItemModel
         FullName = platform.FullName;
         var fileName = $"{ShortName.Replace(" ", "").ToLower()}.png";
         ImageUrl = new Uri(hostUrl, $"resources/images/consoles/{fileName}");
+        ReleaseYear = platform.ReleaseDate.Year;
     }
 }
