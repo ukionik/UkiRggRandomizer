@@ -4,13 +4,20 @@ export default {
     name: "RggConsoles",
     data: function(){
         return{
-            platforms: []
+            platforms: [],
+            selectedPlatform:{
+                id: null,
+                shortName: null,
+                fullName: null,
+                imageUrl: null,
+                releaseYear: null
+            }
         }
     },
     mounted() {
         ApiService.get("/platform/list").then(response => {
             this.platforms = response.data
-            console.log(this.platforms)
+            this.selectedPlatform = this.platforms[0]
         })
     }
 }
