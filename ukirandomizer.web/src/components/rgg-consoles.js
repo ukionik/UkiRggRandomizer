@@ -14,6 +14,11 @@ export default {
             }
         }
     },
+    methods:{
+        startRoll(){
+            this.$router.push({ name: "Wheel" })
+        }
+    },
     mounted() {
         ApiService.get("/platform/list").then(response => {
             this.platforms = response.data

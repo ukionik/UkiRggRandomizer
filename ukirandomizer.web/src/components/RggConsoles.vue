@@ -12,7 +12,7 @@
       </div>
       <h1 class="platform-full-name">{{ selectedPlatform.fullName }}</h1>
       <h1 class="platform-year">({{selectedPlatform.releaseYear}})</h1>
-      <button type="button" class="start">START</button>
+      <button type="button" class="start" @click="startRoll">START</button>
     </div>
   </div>
 
