@@ -7,7 +7,7 @@ import RggWheel from "./components/RggWheel"
 
 const routes = [
     { name: "Home", path: "/", component: RggConsoles },
-    { name: "Wheel",  path: "/wheel", component: RggWheel },
+    { name: "Wheel",  path: "/wheel/:platformName", component: RggWheel},
 ]
 
 const router = createRouter({

@@ -16,7 +16,7 @@ export default {
     },
     methods:{
         startRoll(){
-            this.$router.push({ name: "Wheel" })
+            this.$router.push({ name: "Wheel", params: { platformName: this.selectedPlatform.shortName }})
         }
     },
     mounted() {
