@@ -10,7 +10,9 @@
       <div class="console-image-wrapper">
         <img :src="selectedPlatform.imageUrl" />
       </div>
-      <h1 class="platform-full-name">{{ selectedPlatform.fullName }} ({{selectedPlatform.releaseYear}})</h1>
+      <h1 class="platform-full-name">{{ selectedPlatform.fullName }}</h1>
+      <h1 class="platform-year">({{selectedPlatform.releaseYear}})</h1>
+      <button type="button" class="start">START</button>
     </div>
   </div>
 
@@ -28,7 +30,7 @@
   .consoles{
     display: flex;
     flex-wrap: wrap;
-    flex: 1;
+    flex: 2;
   }
 
   .console {
@@ -60,7 +62,7 @@
     flex-direction: column;
     flex: 1;
     align-items: center;
-    border-left: 0.5rem solid #005a10;
+    border-left: 0.4rem solid #343435;
     padding: 2rem;
   }
 
@@ -68,17 +70,41 @@
 
   }
 
+  .selected-console h1{
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+  }
+
   .selected-console .platform-full-name{
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .selected-console .platform-year{
+    margin-top: 0.5rem;
   }
 
   .selected-console img{
-    height: 256px;
+    height: 192px;
   }
 
-  .selected-console h1{
-    color: white;
-    font-size: 2.5rem;
+  .start{
+    color: #cacaca;
+
+    border: 3px solid #23701c;
+    background-color: #0a570a;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    height: 4.5rem;
+    width: 11rem;
+  }
+
+  .start:hover{
+    color: #ececec;
+    border: 3px solid #44d137;
+    background: #2a912d;
   }
 
 </style>
