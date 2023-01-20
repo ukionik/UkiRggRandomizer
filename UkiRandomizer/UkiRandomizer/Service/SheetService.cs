@@ -43,6 +43,18 @@ public class SheetService : ISheetService
         return await Task.FromResult(platforms);
     }
 
+    public async Task<List<Genre>> LoadGenresAsync()
+    {
+        var range = "Genres!A:A";
+        var result = GetRangeAsync(range).Result;
+        var genres = result.Values
+            .Select(row => new Genre
+            {
+                Name = row[0].ToString()
+            }).ToList();
+        return await Task.FromResult(genres);
+    }
+
     private async Task<ValueRange> GetRangeAsync(string range)
     {
         var request = _service.Value.Spreadsheets.Values.Get(SheetId, range);
