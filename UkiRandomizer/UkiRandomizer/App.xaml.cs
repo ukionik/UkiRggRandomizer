@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using GenHTTP.Engine;
@@ -65,6 +66,12 @@ public partial class App
     private async Task LoadRepositoriesAsync()
     {
         var platformRepository = _diProvider.GetService<IPlatformRepository>();
-        await platformRepository.LoadAsync();
+        var genreRepository = _diProvider.GetService<IGenreRepository>();
+
+        await Task.WhenAll(new List<Task>
+        {
+            platformRepository.LoadAsync(),
+            genreRepository.LoadAsync()
+        });
     }
 }

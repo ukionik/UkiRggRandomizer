@@ -7,4 +7,5 @@ namespace UkiRandomizer.Service;
 public interface ISheetService
 {
     Task<List<Platform>> LoadPlatformsAsync();
+    Task<List<Genre>> LoadGenresAsync();
 }

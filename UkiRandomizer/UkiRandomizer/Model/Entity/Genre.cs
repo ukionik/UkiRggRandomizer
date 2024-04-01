@@ -1,6 +1,10 @@
-﻿namespace UkiRandomizer.Model.Entity;
+﻿using UkiRandomizer.Core;
 
-public class Genre
+namespace UkiRandomizer.Model.Entity;
+
+public class Genre : IEntity<int>
 {
+    public int Id { get; set; }
+    public string Name { get; set; }
     
 }
